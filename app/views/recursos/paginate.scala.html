@@ -1,0 +1,57 @@
+@(page:Int, pageLength:Int, collectionLength:Int, route:(String, Int) => Call, text:String, bound:Int = 5)
+
+@lowbound() = @{
+((page.toDouble / bound).floor * bound) toInt
+}
+@highbound() = @{
+if ((lowbound() + bound) * pageLength >= collectionLength)
+collectionLength / pageLength + 1
+else
+lowbound() + bound
+}
+
+<div align="center">
+
+        <ul class="pagination">
+            @if(page == 1){
+            <li class="disabled"><a href="#">Anterior</a></li>
+            } else {
+            <li><a href="@route(text,page-1)">Anterior</a></li>
+
+            }
+
+            @if(page < bound) {
+            <li class="disabled"><a href="#">&laquo;</a></li>
+            } else {
+            @if(lowbound()-bound <= 0) {
+            <li><a href="@route(text,1)">&laquo;</a></li>
+            } else {
+            <li><a href="@route(text, lowbound()-bound)">&laquo;</a></li>
+            }
+            }
+
+            @for(i <- lowbound().max(1) until page) {
+            <li><a href="@route(text, i)">@i</a></li>
+            }
+
+            <li class="active"><a href="#">@page</a></li>
+
+            @for(i <- page+1 to highbound()) {
+            <li><a href="@route(text, i)">@i</a></li>
+            }
+
+            @if(highbound() * pageLength <= collectionLength && highbound() > page && page * pageLength != collectionLength) {
+            <li><a href="@route(text, highbound())">&raquo;</a></li>
+            } else {
+            <li class="disabled"><a href="#">&raquo;</a></li>
+            }
+
+            @if(page < highbound()) {
+            <li><a href="@route(text,page+1)">Siguiente</a></li>
+            } else {
+            <li class="disabled"><a href="#">Siguiente</a></li>
+
+            }
+        </ul>
+
+</div>

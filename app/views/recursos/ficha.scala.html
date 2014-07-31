@@ -1,0 +1,65 @@
+@(recursos: List[reactivemongo.bson.BSONDocument])
+
+@recurso = @{
+    reactivemongo.bson.BSON.readDocument[model.Recurso](recursos(0))
+
+}
+
+@main("Ficha") {
+
+
+        @if(recursos.length == 0){
+            <h1>No se ha encontrado ningún recurso</h1>
+        }else{
+            <h2>General</h2>
+            <table border="1">
+                <tr>
+                    <td>título</td>
+                    <td>@recurso.titulo</td>
+                </tr>
+                <tr>
+                    <td>imagen</td>
+                    <td>
+                        <img src="@recurso.imagen" alt="@recurso.titulo"/>
+
+                    </td>
+                <tr>
+                    <td>url_recursos</td>
+                    <td><a target="_blank" href="@recurso.url_recurso">url_recurso</a></td>
+                </tr>
+                <tr>
+                    <td>url_descarga</td>
+                    <td><a target="_blank" href="@recurso.url_descarga">url_descarga</a></td>
+                </tr>
+
+                <tr>
+                    <td>descripción</td>
+                    <td>@Html(recurso.descripcion.getOrElse(""))</td>
+                </tr>
+            </table>
+
+            <h2>Apartados</h2>
+            <ul>
+                @for(apartado <- recurso.apartados){
+                    <li>
+                        @apartado.titulo
+                        <ul>
+                            @for(subapartado <- apartado.subapartados){
+                                <li>
+                                    @subapartado.titulo
+                                    <ul>
+                                        @for(valor <- subapartado.valores){
+                                            <li>@valor</li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+        }
+
+	<hr/>
+	<a href='@routes.Recursos.index()'>nueva búsqueda</a>
+}

@@ -1,0 +1,27 @@
+@(recursos: List[reactivemongo.bson.BSONDocument])(count: Int, page: Int, pageLength:Int)(searchText: String)
+
+@main("Recursos") {
+
+<p class="text-info">Se han encontrado @count recursos</p>
+    <table class="table table-striped">
+        <tbody>
+    @recursos.map { recurso =>
+        @defining(routes.Recursos.ficha(recurso.getAs[String]("id").get)) { url =>
+        <tr>
+            <td><img height="30px" src="@recurso.getAs[String]("imagen")" alt="@recurso.getAs[String]("titulo")"/></td>
+            <td></ts><a target="_blank" href="@url">@recurso.getAs[String]("titulo")</a></td>
+        </tr>
+
+        }
+    }
+        </tbody>
+    </table>
+
+
+
+@paginate(page, pageLength, count, routes.Recursos.recursos(_,_), searchText)
+
+<div align="right"><a class="btn btn-primary" href='@routes.Recursos.index()'>nueva búsqueda</a></div>
+
+}
+

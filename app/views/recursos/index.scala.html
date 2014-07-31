@@ -1,0 +1,19 @@
+@(form: Form[Buscador])
+
+@import BootstrapHelper._
+
+@main("Buscador") {
+
+    @helper.form(action = routes.Recursos.procesa(), 'role -> "form", 'class -> "form-horizontal") {
+
+    <div class="container">
+        <fieldset>
+            <legend>Buscador de recursos</legend>
+            <td>@helper.inputText(form("text"), '_label -> "Término")</td>
+
+            <div align="right"><input type="submit" value="Buscar" class="btn btn-primary"></div>
+        </fieldset>
+    </div>
+}
+
+}

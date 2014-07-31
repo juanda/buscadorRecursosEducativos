@@ -1,0 +1,13 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Recursos.index
+GET     /recursos                   controllers.Recursos.recursos(text: String, page:Int = 1)
+GET     /recursos/:page             controllers.Recursos.recursos(text: String, page:Int)
+POST    /procesa                    controllers.Recursos.procesa
+GET     /ficha/:id                  controllers.Recursos.ficha(id: String)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
