@@ -18,8 +18,9 @@
     </table>
 
 
-
-@paginate(page, pageLength, count, routes.Recursos.recursos(_,_), searchText)
+@if(count != 0){
+    @paginate(page, pageLength, count, routes.Recursos.recursos(_,_), searchText)
+}
 
 <div align="right"><a class="btn btn-primary" href='@routes.Recursos.index()'>nueva búsqueda</a></div>
 

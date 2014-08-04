@@ -69,14 +69,16 @@ object Recursos extends Controller {
     }
   }
 
-  def ficha(id:String) = Action.async{
+  def ficha(id: String) = Action.async{ implicit request =>
+    println("request = " + request)
+
     val query = BSONDocument("id" -> id)
 
     val cursor = collection.find(query).cursor[BSONDocument]
 
     val futureRecurso: Future[List[BSONDocument]] = cursor.collect[List]()
 
-    futureRecurso.map { recursos => Ok(views.html.recursos.ficha(recursos))}
+    futureRecurso.map {println(request); recursos => Ok(views.html.recursos.ficha(recursos))}
   }
 
   val formBuscador = Form(
