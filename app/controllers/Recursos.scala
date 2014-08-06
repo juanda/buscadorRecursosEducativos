@@ -16,10 +16,10 @@ import scala.util.{Failure, Success}
 
 object Recursos extends Controller {
 
-  val driver = new MongoDriver()
-  val connection = driver.connection(List("10.200.16.27"))
-  val db = connection.db("recursos")
-  def collection: BSONCollection = db.collection[BSONCollection]("Recurso")
+  val servers = Play.current.configuration.getStringList("mongodb.servers")
+  val database = Play.current.configuration.getString("mongodb.db")
+  val db = juanda.reactivemongo.Connection(servers.get, database.get)
+  def collection: BSONCollection = db.get.collection("Recurso")
 
   def countDocuments(query: BSONDocument) = collection.db.command(Count(collection.name, Option(query)))
 
@@ -70,15 +70,13 @@ object Recursos extends Controller {
   }
 
   def ficha(id: String) = Action.async{ implicit request =>
-    println("request = " + request)
-
     val query = BSONDocument("id" -> id)
 
     val cursor = collection.find(query).cursor[BSONDocument]
 
     val futureRecurso: Future[List[BSONDocument]] = cursor.collect[List]()
 
-    futureRecurso.map {println(request); recursos => Ok(views.html.recursos.ficha(recursos))}
+    futureRecurso.map { recursos => Ok(views.html.recursos.ficha(recursos))}
   }
 
   val formBuscador = Form(

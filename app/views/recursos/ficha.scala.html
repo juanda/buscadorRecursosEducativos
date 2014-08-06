@@ -5,61 +5,65 @@
 
 }
 
-@main("Ficha") {
-
+@main_ficha("Ficha") {
 
         @if(recursos.length == 0){
             <h1>No se ha encontrado ningún recurso</h1>
         }else{
-            <h2>General</h2>
-            <table border="1">
-                <tr>
-                    <td>título</td>
-                    <td>@recurso.titulo</td>
-                </tr>
-                <tr>
-                    <td>imagen</td>
-                    <td>
-                        <img src="@recurso.imagen" alt="@recurso.titulo"/>
 
-                    </td>
-                <tr>
-                    <td>url_recursos</td>
-                    <td><a target="_blank" href="@recurso.url_recurso">url_recurso</a></td>
-                </tr>
-                <tr>
-                    <td>url_descarga</td>
-                    <td><a target="_blank" href="@recurso.url_descarga">url_descarga</a></td>
-                </tr>
+    <div class="CapaCentraAncha">
 
-                <tr>
-                    <td>descripción</td>
-                    <td>@Html(recurso.descripcion.getOrElse(""))</td>
-                </tr>
-            </table>
 
-            <h2>Apartados</h2>
-            <ul>
-                @for(apartado <- recurso.apartados){
+    <div id="recursos_general">
+
+    <h2>@recurso.titulo</h2>
+    <p>&nbsp;</p>
+    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="sin_lineas">
+        <tr>
+            <td width="35%" valign="top" class="imagen_recurso">
+                <h4><img alt="imagen del recurso" width="200" height="200" src="@recurso.imagen" /></h4>
+            </td>
+            <td width="50%" valign="top"><h3>Descripci&oacute;n</h3>
+                <p>&nbsp;</p>
+                <p>@Html(recurso.descripcion.getOrElse(""))</p>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" valign="top"><div class="descarga">
+                <ul>
                     <li>
-                        @apartado.titulo
-                        <ul>
-                            @for(subapartado <- apartado.subapartados){
-                                <li>
-                                    @subapartado.titulo
-                                    <ul>
-                                        @for(valor <- subapartado.valores){
-                                            <li>@valor</li>
-                                        }
-                                    </ul>
-                                </li>
-                            }
-                        </ul>
-                    </li>
-                }
-            </ul>
-        }
+                        <a href="@recurso.url_recurso" target="_blank">Ir a la <strong>aplicaci&oacute;n </strong></a>
+                        <img alt="Ir a la aplicaci&oacute;n" width="13" height="12" src="@routes.Assets.at("images/new_window.gif")" />															                      			</li>
+                    <li>
+                        <a href="@recurso.url_descarga" target="_blank">Ir a la <strong>descarga</strong> </a>
+                        <img alt="Descarga" width="13" height="12" src="@routes.Assets.at("images/download.gif")" />															                      			</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+    <p>&nbsp;</p>
 
-	<hr/>
-	<a href='@routes.Recursos.index()'>nueva búsqueda</a>
+    @for(apartado <- recurso.apartados){
+
+    <h3>@apartado.titulo</h3>
+        <table border="0" cellspacing="0" cellpadding="0">
+        @for(subapartado <- apartado.subapartados){
+        <tr>
+            <td valign="top"><h4>@subapartado.titulo: </h4></td>
+            <td width="350" valign="top">
+                <div>
+                @for(valor <- subapartado.valores){
+                    <div>@valor</div>
+                }
+                </div>
+            </td>
+        </tr>
+        }
+        </table>
+    }
+
+    <hr/>
+    <a href='@routes.Recursos.index()'>nueva búsqueda</a>
+    }
 }

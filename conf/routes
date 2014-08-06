@@ -8,7 +8,6 @@ GET     /historico/recursos                controllers.Recursos.recursos(text: S
 GET     /historico/recursos/:page          controllers.Recursos.recursos(text: String, page:Int)
 POST    /historico/procesa                 controllers.Recursos.procesa
 GET     /historico/ficha                   controllers.Recursos.ficha(recurso: String)
-GET     /historico/ficha/:id               controllers.Recursos.ficha(id: String)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

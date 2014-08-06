@@ -1,6 +1,6 @@
 import com.github.play2war.plugin._
 
-name := "recursos_play22"
+name := "recursos"
 
 version := "1.0-SNAPSHOT"
 

@@ -9,7 +9,7 @@
         @defining(routes.Recursos.ficha(recurso.getAs[String]("id").get)) { url =>
         <tr>
             <td><img height="30px" src="@recurso.getAs[String]("imagen")" alt="@recurso.getAs[String]("titulo")"/></td>
-            <td></ts><a target="_blank" href="@url">@recurso.getAs[String]("titulo")</a></td>
+            <td></ts><a href="@url">@recurso.getAs[String]("titulo")</a></td>
         </tr>
 
         }

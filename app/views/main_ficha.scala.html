@@ -1,0 +1,39 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/1999/PR-xhtml1-19991210/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head>
+    <title>@title</title>
+    <link rel="start" href="http://www.ite.educacion.es" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+    <meta http-equiv="Content-Language" content="es" />
+
+    <meta name="Author" content="CNICE" />
+    <meta name="copyright" content="Ministerio de Educación, Cultura y Deporte" />
+    <meta name="keywords" content="INTEF, Educación, Internet, Web, Accesibilidad, Educación a distancia, Enseñanza, Alumnado, Profesorado, Tutoría, Recursos educativos, Proyectos, TV educativa, Observatorio tecnológico,  " />
+    <meta name="Description" content=" En estas páginas encontrará información sobre educación a distancia, recursos educativos desde niveles de Primaria hasta Bachillerato... " />
+    <meta name="Robots" content="all" />
+    <meta name="Language" content="Spanish" />
+
+    <link rel="stylesheet" media="screen" href="@routes.Assets.at("css/ficha.css")">
+
+
+
+<body id="cuerpo">
+<!-- Cabecera de la pagina - Inicio -->
+
+<!-- Cabecera de la pagina - Fin -->
+<!-- Contenido de la pagina - Inicio -->
+<div id="CapaGeneral2column">
+
+<!-- Menu superior - Fin-->
+<div id="Contenido">
+<!-- Parte central de la pagina - Inicio-->
+    @content
+</div>
+
+</div>
+</body>
+</html>
+
