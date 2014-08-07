@@ -34,8 +34,3 @@ body {
 .btn {
  vertical-align: top
 }
-
-
-.form-inline .input-group > .form-control {
-    width: 500px;
-}

@@ -14,7 +14,8 @@ libraryDependencies ++= Seq(
   jdbc,
   anorm,
   cache,
-  "org.reactivemongo" %% "reactivemongo" % "0.10.0"
+  //"org.reactivemongo" %% "reactivemongo" % "0.10.0"
+  "org.reactivemongo" %% "play2-reactivemongo" % "0.10.2"
 )     
 
 play.Project.playScalaSettings
