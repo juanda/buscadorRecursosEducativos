@@ -67,17 +67,25 @@ object SubApartado{
   implicit object SubApartadoReader extends BSONDocumentReader[SubApartado]{
     def read(doc: BSONDocument): SubApartado = {
 
-      val valores = if(doc.get("valor").get.isInstanceOf[BSONString]) Some(Stream(doc.getAs[String]("valor").get))
-      else doc.getAs[BSONArray]("valor").map { array =>
-        array.values.map { valor =>
-          valor.seeAsOpt[String].get
+      try {
+        val valores = if (doc.get("valor").get.isInstanceOf[BSONString]) Some(Stream(doc.getAs[String]("valor").get))
+        else doc.getAs[BSONArray]("valor").map { array =>
+          array.values.map { valor =>
+            valor.seeAsOpt[String].get
+          }
         }
-      }
+
 
       SubApartado(
         doc.getAs[String]("titulo"),
         valores.getOrElse(Stream()).toList
       )
+      }catch {
+        case e: NoSuchElementException => SubApartado(
+          doc.getAs[String]("titulo"),
+          List()
+        )
+      }
     }
   }
 }

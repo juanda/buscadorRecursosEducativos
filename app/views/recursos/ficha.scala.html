@@ -64,6 +64,12 @@
     }
 
     <hr/>
-    <a href='@routes.Recursos.index()'>nueva búsqueda</a>
+    <a href='@routes.Recursos.index()'>Nueva Búsqueda</a> | <a href="#" onclick="goBack()">Atrás</a>
+
+        <script>
+        function goBack() {
+        window.history.back()
+        }
+        </script>
     }
 }
