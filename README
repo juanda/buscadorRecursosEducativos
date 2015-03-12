@@ -1,9 +1,7 @@
 Ejecutar la aplicación
 ----------------------
 
-ejecutar ``activator`` en el directorio raíz y una vez dentro:
-
-    run
+sbt run
 
 Se arranca un web server en el puerto 9000 que sirve la aplicación
 
