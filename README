@@ -1,4 +1,18 @@
-This is your new Play application
-=====================================
+Ejecutar la aplicación
+----------------------
 
-This file will be packaged with your application, when using `play dist`.
+ejecutar ``activator`` en el directorio raíz y una vez dentro:
+
+    run
+
+Se arranca un web server en el puerto 9000 que sirve la aplicación
+
+Compilar la aplicación
+----------------------
+
+sbt compile
+
+Crear un war
+------------
+
+sbt war
