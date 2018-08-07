@@ -14,3 +14,9 @@ Crear un war
 ------------
 
 sbt war
+
+
+Construir un distribuible universal
+-----------------------------------
+
+sbt dist
